@@ -1,0 +1,71 @@
+body{
+    background-color: #242424;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    height: 100Vh;
+    padding: 0px;
+    margin: 0px;
+    box-sizing: border-box;
+    main.main{
+        // border: solid 1px red;
+        width: 70vw;
+        height: 70vw;
+        max-width: 40vw;
+        max-height: 40vw;
+        table{
+            // border: solid blue 1px;
+            width: 100%;
+            height: 100%;
+            border-collapse: collapse;
+            table-layout: fixed;
+            tr{
+                border-bottom:solid 3px #8f7f31;
+                &:last-child{
+                    border-bottom: none;
+                }
+                td{
+                    border-right: solid 3px #8f7f31;
+                    &:last-child{
+                        border-right: none;
+                    }
+                    .rond{
+                        border: solid 2px whitesmoke;
+                        width: 60%;
+                        height: 60%;
+                        border-radius: 100%;
+                        margin-left: 50%;
+                        transform: translate(-50%);
+                    }
+                    .crois{
+                        width: 60%;
+                        height: 60%;
+                        margin-left: 50%;
+                        transform: translate(-50%);
+                        display: flex;
+                        flex-direction: column;
+                        justify-content: center;
+                        align-items: center;
+                        overflow: hidden;
+                        div{
+                            border: solid 1px white;
+                            width: 100px;
+
+                            &:nth-child(1){
+                                transform: rotate(-45deg);
+                            }
+                            &:nth-child(2){
+                                transform: rotate(45deg);
+                            }
+                        }
+                    }
+                    span{
+                        color: #242424;
+                        user-select: none;
+                    }
+                }
+            }
+        }
+    }
+}

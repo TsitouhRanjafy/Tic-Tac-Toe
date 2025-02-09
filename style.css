@@ -1,3 +1,69 @@
-
+body {
+  background-color: #242424;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100Vh;
+  padding: 0px;
+  margin: 0px;
+  box-sizing: border-box;
+}
+body main.main {
+  width: 70vw;
+  height: 70vw;
+  max-width: 40vw;
+  max-height: 40vw;
+}
+body main.main table {
+  width: 100%;
+  height: 100%;
+  border-collapse: collapse;
+  table-layout: fixed;
+}
+body main.main table tr {
+  border-bottom: solid 3px #8f7f31;
+}
+body main.main table tr:last-child {
+  border-bottom: none;
+}
+body main.main table tr td {
+  border-right: solid 3px #8f7f31;
+}
+body main.main table tr td:last-child {
+  border-right: none;
+}
+body main.main table tr td .rond {
+  border: solid 2px whitesmoke;
+  width: 60%;
+  height: 60%;
+  border-radius: 100%;
+  margin-left: 50%;
+  transform: translate(-50%);
+}
+body main.main table tr td .crois {
+  width: 60%;
+  height: 60%;
+  margin-left: 50%;
+  transform: translate(-50%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}
+body main.main table tr td .crois div {
+  border: solid 1px white;
+  width: 100px;
+}
+body main.main table tr td .crois div:nth-child(1) {
+  transform: rotate(-45deg);
+}
+body main.main table tr td .crois div:nth-child(2) {
+  transform: rotate(45deg);
+}
+body main.main table tr td span {
+  color: #242424;
+  user-select: none;
+}
 
 /*# sourceMappingURL=style.css.map */
