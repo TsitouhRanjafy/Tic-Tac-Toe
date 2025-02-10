@@ -3,19 +3,55 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-
     height: 100Vh;
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
+    .container-winner{
+        position: absolute;
+        width: 80vw;
+        height: 50px;
+        background-color: #001f41;
+        top: 10px;
+        color: whitesmoke;
+        font-family: sans-serif;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        transition: ease-out 400ms;
+        transform: translateY(-120%);
+        &.show{
+            transform: translateY(5%);
+            transition: ease-in 400ms;
+        }
+        .icon-reload{
+            width: 20px;
+            height: 20px;
+            cursor: pointer;
+            padding: 5px;
+            position: absolute;
+            right: 5px;
+            &:hover{
+                background-color: #00244b;
+            }
+            &:active{
+                background-color: #003064;
+            }
+        }
+    }
     main.main{
         // border: solid 1px red;
         width: 70vw;
         height: 70vw;
         max-width: 40vw;
         max-height: 40vw;
+        &.disable{
+            visibility: none;
+            display: none;
+        }
+
         table{
-            // border: solid blue 1px;
+            border: solid blue 1px;
             width: 100%;
             height: 100%;
             border-collapse: collapse;
@@ -23,12 +59,18 @@ body{
             tr{
                 border-bottom:solid 3px #8f7f31;
                 &:last-child{
-                    border-bottom: none;
+                    border-bottom:solid 3px #242424;
+                }
+                &:first-child{
+                    border-top: solid 3px #242424;
                 }
                 td{
                     border-right: solid 3px #8f7f31;
                     &:last-child{
-                        border-right: none;
+                        border-right: solid 3px #242424;
+                    }
+                    &:first-child{
+                        border-left: solid 3px #242424;
                     }
                     .rond{
                         border: solid 2px whitesmoke;
@@ -37,10 +79,15 @@ body{
                         border-radius: 100%;
                         margin-left: 50%;
                         transform: translate(-50%);
+                        &.test{
+                            border-color: #242424;
+                        }
                     }
                     .crois{
-                        width: 60%;
-                        height: 60%;
+                        min-width: 60%;
+                        min-height: 60%;
+                        max-width: 60%;
+                        max-height: 60%;
                         margin-left: 50%;
                         transform: translate(-50%);
                         display: flex;
@@ -60,6 +107,7 @@ body{
                             }
                         }
                     }
+                   
                     span{
                         color: #242424;
                         user-select: none;
