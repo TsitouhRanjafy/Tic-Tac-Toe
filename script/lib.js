@@ -27,8 +27,18 @@ export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesEleme
                 newWinner.textContent = winner + " WIN";
                 containerWinner.appendChild(newWinner);
                 containerWinner.classList.add('show')
-                // main.classList.add('disable')
             }
         })
     }
 }
+
+// export const socket = io('http://localhost:3000');
+
+
+// export const multiplayerEventOnline = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
+//     for (let i=0;i <= casesElement.length - 1;i++){
+
+//     }
+// }
+
+
