@@ -1,5 +1,16 @@
+$back-color:#242424;
+$second-color:#c5aa21;
+$second-color-focus:#7c7b75;
+$second-color-active:#dfc026;
+$white-color:#ebebeb;
+$blue-color:rgb(36, 36, 153);
+
+
+* {
+    box-sizing: border-box;
+}
 body{
-    background-color: #242424;
+    background-color: $back-color;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -49,7 +60,7 @@ body{
             visibility: none;
             display: none;
         }
-
+        
         table{
             border: solid blue 1px;
             width: 100%;
@@ -57,20 +68,20 @@ body{
             border-collapse: collapse;
             table-layout: fixed;
             tr{
-                border-bottom:solid 3px #8f7f31;
+                border-bottom:solid 3px $second-color;
                 &:last-child{
-                    border-bottom:solid 3px #242424;
+                    border-bottom:solid 3px $back-color;
                 }
                 &:first-child{
-                    border-top: solid 3px #242424;
+                    border-top: solid 3px $back-color;
                 }
                 td{
-                    border-right: solid 3px #8f7f31;
+                    border-right: solid 3px $second-color;
                     &:last-child{
-                        border-right: solid 3px #242424;
+                        border-right: solid 3px $back-color;
                     }
                     &:first-child{
-                        border-left: solid 3px #242424;
+                        border-left: solid 3px $back-color;
                     }
                     .rond{
                         border: solid 2px whitesmoke;
@@ -80,7 +91,7 @@ body{
                         margin-left: 50%;
                         transform: translate(-50%);
                         &.test{
-                            border-color: #242424;
+                            border-color: $back-color;
                         }
                     }
                     .crois{
@@ -109,10 +120,58 @@ body{
                     }
                    
                     span{
-                        color: #242424;
+                        color: $back-color;
                         user-select: none;
                     }
                 }
+            }
+        }
+    }
+    form{
+        // border: solid 1px red;
+        overflow: hidden;
+        padding: 10px;
+        position: absolute;
+        width: 50%;
+        min-width: 300px;
+        height: 15%;
+        gap: 5px;
+        display: none;
+        flex-direction: column;
+        align-items: center;
+        &.show {
+            display: flex;
+        }
+        input{
+            border-radius: 5px;
+            border: none;
+            width: 100%;
+            font-size: 15px;
+            &.prenom{
+                padding-left: 5px;
+                color:$back-color;
+                font-weight: 600;
+                font-size: 17px;
+                flex: 0.6;
+            }
+            &.submit{
+                flex: 0.4;
+                color: $white-color;
+                background-color: $second-color;
+                margin: 0;
+                cursor: pointer;
+                &:active{
+                    background-color: $second-color-active;
+                }
+            }
+            &#localButton{
+                flex:0.4;
+                cursor: pointer;
+                color: $white-color;
+                background-color: $blue-color;
+            }
+            &:focus{
+                outline: none;
             }
         }
     }

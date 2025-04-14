@@ -1,4 +1,5 @@
 import { checkWinner } from "./helper.js";
+import { myId, playerName } from "./main.js";
 
 export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
     for (let i=0;i <= casesElement.length - 1;i++){
@@ -32,13 +33,46 @@ export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesEleme
     }
 }
 
-// export const socket = io('http://localhost:3000');
+export const multiplayerEventOnline = (serverSocket,tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
+    for (let i=0;i <= casesElement.length - 1;i++){
+        casesElement[i].addEventListener(('click'),(e) => {
+            serverSocket.emit('cases_event',{
+                line: casesElement[i].classList.value[5]-1,
+                column: casesElement[i].classList.value[7]-1,
+                playerId: myId,
+                caseIndex: i
+            });
+        });
+    }
+    serverSocket.on('cases_event',(event) => {
+        if (event.playerId == 'O') {
+            casesElement[event.caseIndex].innerHTML = rondElement 
+            tableCases[event.line][event.column] = event.playerId;
+        } else {
+            casesElement[event.caseIndex].innerHTML = croisElement,rondElement 
+            tableCases[event.line][event.column] = event.playerId;
+        }
+        booleanCases[event.line][event.column] = true;
 
-
-// export const multiplayerEventOnline = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
-//     for (let i=0;i <= casesElement.length - 1;i++){
-
-//     }
-// }
+        winner = checkWinner(tableCases);
+        if (winner != '#') {
+            serverSocket.emit('winner_event',{ winner: winner });
+        }
+        // if (winner != '#'){
+        //     casesElement = null;
+        //     const newWinner = document.createElement("p");
+        //     newWinner.textContent = winner + " WIN";
+        //     containerWinner.appendChild(newWinner);
+        //     containerWinner.classList.add('show')
+        // }
+    })
+    serverSocket.on('winner_event',(event) => {
+        casesElement = null;
+        const newWinner = document.createElement("p");
+        (event.winner == myId)? newWinner.textContent = "YOU WIN" : newWinner.textContent = "YOU LOSE";
+        containerWinner.appendChild(newWinner);
+        containerWinner.classList.add('show');
+    })
+}
 
 

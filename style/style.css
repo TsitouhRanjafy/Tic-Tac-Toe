@@ -1,3 +1,7 @@
+* {
+  box-sizing: border-box;
+}
+
 body {
   background-color: #242424;
   display: flex;
@@ -58,7 +62,7 @@ body main.main table {
   table-layout: fixed;
 }
 body main.main table tr {
-  border-bottom: solid 3px #8f7f31;
+  border-bottom: solid 3px #c5aa21;
 }
 body main.main table tr:last-child {
   border-bottom: solid 3px #242424;
@@ -67,7 +71,7 @@ body main.main table tr:first-child {
   border-top: solid 3px #242424;
 }
 body main.main table tr td {
-  border-right: solid 3px #8f7f31;
+  border-right: solid 3px #c5aa21;
 }
 body main.main table tr td:last-child {
   border-right: solid 3px #242424;
@@ -112,6 +116,53 @@ body main.main table tr td .crois div:nth-child(2) {
 body main.main table tr td span {
   color: #242424;
   user-select: none;
+}
+body form {
+  overflow: hidden;
+  padding: 10px;
+  position: absolute;
+  width: 50%;
+  min-width: 300px;
+  height: 15%;
+  gap: 5px;
+  display: none;
+  flex-direction: column;
+  align-items: center;
+}
+body form.show {
+  display: flex;
+}
+body form input {
+  border-radius: 5px;
+  border: none;
+  width: 100%;
+  font-size: 15px;
+}
+body form input.prenom {
+  padding-left: 5px;
+  color: #242424;
+  font-weight: 600;
+  font-size: 17px;
+  flex: 0.6;
+}
+body form input.submit {
+  flex: 0.4;
+  color: #ebebeb;
+  background-color: #c5aa21;
+  margin: 0;
+  cursor: pointer;
+}
+body form input.submit:active {
+  background-color: #dfc026;
+}
+body form input#localButton {
+  flex: 0.4;
+  cursor: pointer;
+  color: #ebebeb;
+  background-color: rgb(36, 36, 153);
+}
+body form input:focus {
+  outline: none;
 }
 
 /*# sourceMappingURL=style.css.map */
