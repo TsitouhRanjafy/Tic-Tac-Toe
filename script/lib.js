@@ -1,5 +1,5 @@
 import { checkWinner } from "./helper.js";
-import { myId, playerName } from "./main.js";
+import { myId, playerName, roomName } from "./main.js";
 
 export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
     for (let i=0;i <= casesElement.length - 1;i++){
@@ -40,7 +40,8 @@ export const multiplayerEventOnline = (serverSocket,tableCases,booleanCases,togg
                 line: casesElement[i].classList.value[5]-1,
                 column: casesElement[i].classList.value[7]-1,
                 playerId: myId,
-                caseIndex: i
+                caseIndex: i,
+                roomName: roomName
             });
         });
     }
@@ -56,23 +57,17 @@ export const multiplayerEventOnline = (serverSocket,tableCases,booleanCases,togg
 
         winner = checkWinner(tableCases);
         if (winner != '#') {
-            serverSocket.emit('winner_event',{ winner: winner });
+            console.log("quelqu'un a gagné");
+            casesElement = null;
+            const newWinner = document.createElement("p");
+            (winner == myId)? newWinner.textContent = "YOU WIN" : newWinner.textContent = "YOU LOSE";
+            containerWinner.appendChild(newWinner);
+            containerWinner.classList.add('show');
+            // serverSocket.emit('winner_event',{ winner: winner });
         }
-        // if (winner != '#'){
-        //     casesElement = null;
-        //     const newWinner = document.createElement("p");
-        //     newWinner.textContent = winner + " WIN";
-        //     containerWinner.appendChild(newWinner);
-        //     containerWinner.classList.add('show')
-        // }
     })
-    serverSocket.on('winner_event',(event) => {
-        casesElement = null;
-        const newWinner = document.createElement("p");
-        (event.winner == myId)? newWinner.textContent = "YOU WIN" : newWinner.textContent = "YOU LOSE";
-        containerWinner.appendChild(newWinner);
-        containerWinner.classList.add('show');
-    })
+    // serverSocket.on('winner_event',(event) => {
+    // })
 }
 
 

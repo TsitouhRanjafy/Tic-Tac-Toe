@@ -17,10 +17,8 @@ const io = new ServerSocket(serverNode,{
 
 /****** variable pour le jeux *******/
 
-var togglePlayer = true; // first player, true for ROND, false for CROIX
-var countPlayer = 0; // max player 2
-var testRoom = "some room";
-var currentPlayerId = 'O';
+var countPlayer = 1; // max player 2
+var currentPlayerId = 'O'; // first move
 var playerName1 = null;
 var playerName2 = null;
 
@@ -28,35 +26,41 @@ var playerName2 = null;
 
 
 app.get('/', (req, res) => {
-  res.send('<h1>Hello world</h1>');
+  res.send('<h1>This is a socket-server</h1>');
 });
 
 io.on('connection',(socket) => {
-    countPlayer += 1;
-    socket.join(testRoom);
+  console.log('a user connected');
 
-    // init user
-    socket.on('request_name',(event) => {
-      console.log("playerName:",event.playerName);
-      if (countPlayer == 1) playerName1 = event.playerName;
-      if (countPlayer == 2) playerName2 = event.playerName;
-      (countPlayer == 1) ? io.to(testRoom).emit('init_event',{ playerName: playerName1, playerFirst: currentPlayerId, playerId: 'O'}) : io.to(testRoom).emit('init_event',{ playerName: playerName2, playerFirst: currentPlayerId, playerId: 'X' }); 
-    });
-    console.log('a user connected');
+  // init user
+  socket.on('request_nam&room',(event) => {
+    console.log("playerName:",event.playerName);
+    if (countPlayer > 2) return;
+    socket.join(event.roomName);
+    if (countPlayer == 1) {
+      playerName1 = event.playerName;
+      io.to(event.roomName).emit('init_event',{ playerName: playerName1, playerFirst: currentPlayerId, playerId: 'O'});
+    } 
+    if (countPlayer == 2) {
+      playerName2 = event.playerName;
+      io.to(event.roomName).emit('init_event',{ playerName: playerName2, playerFirst: currentPlayerId, playerId: 'X' }); 
+    } 
+    countPlayer++;
+    console.log(event.playerName,"join a room => ",event.roomName);
+  });
+  
+  // init play event 
+  socket.on('cases_event',(event) => {
     
-    // init play event 
-    socket.on('cases_event',(event) => {
-      console.log(event.playerId,"  ",currentPlayerId);
-      
-      if (event.playerId == currentPlayerId) {
-        io.to(testRoom).emit('cases_event',event);
-        currentPlayerId = 'X';
-      };
-    })
+    if (event.playerId == currentPlayerId) {
+      io.to(event.roomName).emit('cases_event',event);
+      (currentPlayerId == 'X') ? currentPlayerId = 'O' : currentPlayerId = 'X'; // il faut gérer les joueurs (ex: à qui le tour dans cette room?)
+    };
+  })
 
-    socket.on('disconnect', () => {
-        console.log('a user disconnected');
-    })
+  socket.on('disconnect', () => {
+    console.log('a user disconnected');
+  })
 })
 
 serverNode.listen(env().port, () => {

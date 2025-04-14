@@ -9,7 +9,13 @@ const iconReload = document.getElementById('icon-reload');
 const containerWinner = document.getElementById('container-winner');
 const playground = document.getElementById('main');
 const localButton = document.getElementById('localButton');
-const form = document.getElementById('form');
+const formData = document.getElementById('form');
+const inputRoomName = document.getElementById('room');
+const searchRoomButton = document.getElementById('searchRoomButton'); // not implementhed
+const containerData = document.getElementById('container-data');
+const nameConainter = document.getElementById('userName');
+const roomContainer = document.getElementById('roomName');
+const formRoom = document.getElementById('form-room');
 const inputPrenom  = document.getElementById('prenom');
 const rondElement = `<div class="rond" ></div>`
 const croisElement = `<div class="crois">
@@ -38,10 +44,11 @@ var booleanCases = [ // check if a case is occuped
 
 var togglePlayer = true; // true for ROND, false for CROIX
 
-/********************* Notre variable for socket ***************/
+/********************* Notre variable pour socket ***************/
 
-export let playerName = null;
+export var playerName = null;
 export var myId = null;
+export var roomName = null;
 
 /* ------------------ Notre Fonction Principale -------------------*/
 
@@ -54,6 +61,7 @@ function main(){
             time: 200,
         })
     
+        // capture error
         socketServer.on('error',(err) => { 
             alert("server socket error",err.message);
         })
@@ -61,18 +69,20 @@ function main(){
             alert("server socket not connected",err.message);
         })
         
+        // request name and roomName
         socketServer.on('connect',() => {
-            socketServer.emit('request_name',{ playerName: playerName });
+            socketServer.emit('request_nam&room',{ playerName: playerName,roomName: roomName });
             multiplayerEventOnline(socketServer,tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner)
         })
     
+        // tel on event inited
         socketServer.on('init_event',(init_value) => {
             if (playerName == init_value.playerName) {
                 myId = init_value.playerId;
                 console.log("✅ mutly online init, myId:",myId,"playerName:",playerName," playerFirst:",init_value.playerFirst);
             }
         })
-    
+
     } else {
         multiplayerEvent(tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner);
         console.log("✅ multy offline init");
@@ -85,20 +95,33 @@ iconReload.addEventListener('click',(e) => {
     location.reload();
 })
 
-form.addEventListener('submit',(e) => {
+formData.addEventListener('submit',(e) => {
     e.preventDefault();
     if (inputPrenom.value) {
-        playerName = inputPrenom.value;
-        playMultyOnline = true;
-        form.classList.remove('show');
-        playground.classList.remove('disable');
+        playerName = inputPrenom.value.toLowerCase();
+
+        formData.classList.remove('show');
+        nameConainter.innerHTML = "Name: "+playerName;
+        formRoom.classList.add('show');
     }
-    
-    main();
+})
+
+formRoom.addEventListener('submit',(e) => {
+    e.preventDefault();
+    if (inputRoomName.value) {
+        roomName = inputRoomName.value;
+        playMultyOnline = true;
+
+        formRoom.classList.remove('show');
+        roomContainer.innerHTML = "Room: "+ roomName;
+        playground.classList.remove('disable');
+        containerData.classList.add('show');
+        main();
+    }
 })
 
 localButton.addEventListener('click',() => {
-    form.classList.remove('show');
+    formData.classList.remove('show');
     playground.classList.remove('disable');
     main();
 })

@@ -18,7 +18,7 @@ body{
     padding: 0px;
     margin: 0px;
     box-sizing: border-box;
-    .container-winner{
+    div.container-winner{
         position: absolute;
         width: 80vw;
         height: 50px;
@@ -50,6 +50,25 @@ body{
             }
         }
     }
+    div.container-data{
+        position: absolute;
+        // border: solid 1px yellow;
+        top: 30px;
+        left: 30px;
+        width: 25%;
+        min-width: 160px;
+        display: none;
+        background-color: $white-color;
+        border-radius: 3px;
+        padding: 0 9px;
+        p{
+            color: black;
+            text-transform: capitalize;
+        }
+        &.show{
+            display: block;
+        }
+    }
     main.main{
         // border: solid 1px red;
         width: 70vw;
@@ -62,7 +81,7 @@ body{
         }
         
         table{
-            border: solid blue 1px;
+            // border: solid blue 1px;
             width: 100%;
             height: 100%;
             border-collapse: collapse;
@@ -134,7 +153,7 @@ body{
         position: absolute;
         width: 50%;
         min-width: 300px;
-        height: 15%;
+        height: 150px;
         gap: 5px;
         display: none;
         flex-direction: column;
@@ -147,14 +166,14 @@ body{
             border: none;
             width: 100%;
             font-size: 15px;
-            &.prenom{
+            &.prenom,&.room{
                 padding-left: 5px;
                 color:$back-color;
                 font-weight: 600;
                 font-size: 17px;
                 flex: 0.6;
             }
-            &.submit{
+            &.submit,&.joinRoomButton{
                 flex: 0.4;
                 color: $white-color;
                 background-color: $second-color;
@@ -164,7 +183,7 @@ body{
                     background-color: $second-color-active;
                 }
             }
-            &#localButton{
+            &#localButton,&.searchRoomButton{
                 flex:0.4;
                 cursor: pointer;
                 color: $white-color;
