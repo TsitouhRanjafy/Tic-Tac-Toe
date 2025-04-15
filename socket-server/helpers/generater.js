@@ -1,1 +1,3 @@
-export const generateId = Math.round(Math.random() * 1000000)
+import { randomBytes } from "node:crypto"
+
+export const generateId = () => randomBytes(16).toString('hex');

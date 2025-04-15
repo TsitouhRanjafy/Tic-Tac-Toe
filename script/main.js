@@ -49,49 +49,55 @@ var togglePlayer = true; // true for ROND, false for CROIX
 export var playerName = null;
 export var myId = null;
 export var roomName = null;
+export var matchId = null;
 
 /* ------------------ Notre Fonction Principale -------------------*/
 
 function main(){
-    if (playWithMachine){
-        // single player event here
-    } else if (playMultyOnline){
-        var socketServer = io('http://localhost:3000',{
-            reconnectionAttempts: 3,
-            time: 200,
-        })
-    
-        // capture error
-        socketServer.on('error',(err) => { 
-            alert("server socket error",err.message);
-        })
-        socketServer.on("connect_error",(err) => {
-            alert("server socket not connected",err.message);
-        })
+        if (playWithMachine){
+            // single player event here
+        } else if (playMultyOnline){
+            var socketServer = io('http://localhost:3000',{
+                reconnectionAttempts: 3,
+                time: 200,
+            })
         
-        // request name and roomName
-        socketServer.on('connect',() => {
-            socketServer.emit('request_nam&room',{ playerName: playerName,roomName: roomName });
-            multiplayerEventOnline(socketServer,tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner)
-        })
+            // capture error
+            socketServer.on('error',(err) => { 
+                alert("server socket error",err.message);
+            })
+            socketServer.on("connect_error",(err) => {
+                alert("server socket not connected",err.message);
+            })
+            
+            // request name and roomName
+            socketServer.on('connect',() => {
+                socketServer.emit('request_name&room',{ playerName: playerName,roomName: roomName });
+                multiplayerEventOnline(socketServer,tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner)
+            })
+        
+            // tel on event inited
+            socketServer.on('init_event',(init_value) => {
+                if (playerName == init_value.playerName) {
+                    myId = init_value.playerId;
+                    matchId = init_value.matchId;
+                    if (myId)
+                        console.log("✅ mutly online init, myId:",myId,"mtachId:",matchId," playerFirst:",init_value.playerFirst);
+                    else
+                        console.log("room already used");
+                }
+            })
     
-        // tel on event inited
-        socketServer.on('init_event',(init_value) => {
-            if (playerName == init_value.playerName) {
-                myId = init_value.playerId;
-                console.log("✅ mutly online init, myId:",myId,"playerName:",playerName," playerFirst:",init_value.playerFirst);
-            }
-        })
-
-    } else {
-        multiplayerEvent(tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner);
-        console.log("✅ multy offline init");
-    }
+        } else {
+            multiplayerEvent(tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner);
+            console.log("✅ multy offline init");
+        }
 }
 
 /********************** Fonction pour DOM ******************************/
 
 iconReload.addEventListener('click',(e) => {
+    alert("zevhbze")
     location.reload();
 })
 
@@ -126,6 +132,13 @@ localButton.addEventListener('click',() => {
     main();
 })
 
+// Empêcher les rechargements non désirés
+window.addEventListener('beforeunload', (event) => {
+    // Affiche une confirmation (optionnel, selon le navigateur)
+    event.preventDefault();
+    event.returnValue = ''; // Certains navigateurs nécessitent cela pour afficher une alerte
+    console.log('Tentative de rechargement bloquée');
+});
 
 
 /************************* Notre init Element *****************************/

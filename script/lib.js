@@ -1,5 +1,5 @@
 import { checkWinner } from "./helper.js";
-import { myId, playerName, roomName } from "./main.js";
+import { myId, roomName, matchId } from "./main.js";
 
 export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
     for (let i=0;i <= casesElement.length - 1;i++){
@@ -41,7 +41,8 @@ export const multiplayerEventOnline = (serverSocket,tableCases,booleanCases,togg
                 column: casesElement[i].classList.value[7]-1,
                 playerId: myId,
                 caseIndex: i,
-                roomName: roomName
+                roomName: roomName,
+                matchId: matchId
             });
         });
     }
