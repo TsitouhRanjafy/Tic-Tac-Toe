@@ -2,7 +2,7 @@ import express from 'express';
 import { createServer } from 'node:http';
 import { Server as ServerSocket } from "socket.io"
 import { env } from './env.js';
-
+import matchRoutes from './match.route.js';
 
 const app = express();
 const serverNode = createServer(app);
@@ -15,6 +15,11 @@ const io = new ServerSocket(serverNode,{
     }
 })
 
+/***************** Middleware **********************/
+app.use(express.json());
+
+/***************************************/
+
 /****** variable pour le jeux *******/
 
 var countPlayer = 1; // max player 2
@@ -25,9 +30,13 @@ var playerName2 = null;
 /************************************/
 
 
+/********************** route **********************/
 app.get('/', (req, res) => {
   res.send('<h1>This is a socket-server</h1>');
 });
+app.use('/',matchRoutes);
+
+/********************************************/
 
 io.on('connection',(socket) => {
   console.log('a user connected');
@@ -46,7 +55,7 @@ io.on('connection',(socket) => {
       io.to(event.roomName).emit('init_event',{ playerName: playerName2, playerFirst: currentPlayerId, playerId: 'X' }); 
     } 
     countPlayer++;
-    console.log(event.playerName,"join a room => ",event.roomName);
+    console.log(event.playerName,"join a room => ",event.roomName," count player:",countPlayer);
   });
   
   // init play event 

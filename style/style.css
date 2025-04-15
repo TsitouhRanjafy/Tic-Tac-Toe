@@ -20,6 +20,7 @@ body div.container-winner {
   top: 10px;
   color: whitesmoke;
   font-family: sans-serif;
+  z-index: 100;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,12 +52,15 @@ body div.container-data {
   width: 25%;
   min-width: 160px;
   display: none;
+  z-index: 90;
   background-color: #ebebeb;
   border-radius: 3px;
   padding: 0 9px;
 }
 body div.container-data p {
   color: black;
+}
+body div.container-data p#userName {
   text-transform: capitalize;
 }
 body div.container-data.show {
