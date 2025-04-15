@@ -57,7 +57,7 @@ function main(){
         if (playWithMachine){
             // single player event here
         } else if (playMultyOnline){
-            var socketServer = io('http://localhost:3000',{
+            var socketServer = io('https://socket-server-tictactoe.onrender.com',{
                 reconnectionAttempts: 3,
                 time: 200,
             })

@@ -119,9 +119,11 @@ io.on('connection',(socket) => {
   })
 })
 
-serverNode.listen(env().port, () => {
+app.listen(env().port,() => {
   console.log(`server running at http://localhost:${env().port}`);
-});
+})
+
+export default app;
 
 
 
