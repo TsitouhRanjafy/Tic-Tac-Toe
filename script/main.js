@@ -83,8 +83,12 @@ function main(){
                     matchId = init_value.matchId;
                     if (myId)
                         console.log("✅ mutly online init, myId:",myId,"mtachId:",matchId," playerFirst:",init_value.playerFirst);
-                    else
+                    else {
                         console.log("room already used");
+                        playground.classList.add('disable');
+                        containerData.classList.remove('show');
+                        formData.classList.add('show');
+                    }
                 }
             })
     
