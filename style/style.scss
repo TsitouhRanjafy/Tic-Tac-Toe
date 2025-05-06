@@ -1,16 +1,32 @@
-$back-color:#242424;
+$bg-color:rgb(0, 0, 0);
+$text-color:white;
 $second-color:#c5aa21;
 $second-color-focus:#7c7b75;
 $second-color-active:#dfc026;
 $white-color:#ebebeb;
 $blue-color:rgb(36, 36, 153);
 
+@font-face {
+    font-family: 'PressStart';
+    src: url('./PressStart2P-Regular.ttf');
+}
+
+@font-face {
+    font-family: 'GoodTiming';
+    src: url('./good-timing-bd.ttf');
+}
+
+@font-face {
+    font-family: 'Roboto';
+    src: url('./Roboto-VariableFont_wdth\,wght.ttf');
+}
 
 * {
     box-sizing: border-box;
 }
 body{
-    background-color: $back-color;
+    background-image: url('./background.jpg');
+    backdrop-filter: blur(0px);
     display: flex;
     justify-content: center;
     align-items: center;
@@ -93,18 +109,18 @@ body{
             tr{
                 border-bottom:solid 3px $second-color;
                 &:last-child{
-                    border-bottom:solid 3px $back-color;
+                    border-bottom:solid 3px $bg-color;
                 }
                 &:first-child{
-                    border-top: solid 3px $back-color;
+                    border-top: solid 3px $bg-color;
                 }
                 td{
                     border-right: solid 3px $second-color;
                     &:last-child{
-                        border-right: solid 3px $back-color;
+                        border-right: solid 3px $bg-color;
                     }
                     &:first-child{
-                        border-left: solid 3px $back-color;
+                        border-left: solid 3px $bg-color;
                     }
                     .rond{
                         border: solid 2px whitesmoke;
@@ -114,7 +130,7 @@ body{
                         margin-left: 50%;
                         transform: translate(-50%);
                         &.test{
-                            border-color: $back-color;
+                            border-color: $bg-color;
                         }
                     }
                     .crois{
@@ -143,58 +159,99 @@ body{
                     }
                    
                     span{
-                        color: $back-color;
+                        color: $bg-color;
                         user-select: none;
                     }
                 }
             }
         }
     }
-    form{
-        // border: solid 1px red;
-        overflow: hidden;
-        padding: 10px;
-        position: absolute;
-        width: 50%;
-        min-width: 300px;
-        height: 150px;
-        gap: 5px;
-        display: none;
-        flex-direction: column;
+    div.container-acceuil{
+        border: 2px solid red;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
         align-items: center;
-        &.show {
-            display: flex;
-        }
-        input{
-            border-radius: 5px;
-            border: none;
+        flex-direction: column;
+        div.container-title{
+            background-color: rgba(255, 255, 255, 0.92);
+            font-family: 'PressStart';
             width: 100%;
-            font-size: 15px;
-            &.prenom,&.room{
-                padding-left: 5px;
-                color:$back-color;
-                font-weight: 600;
-                font-size: 17px;
-                flex: 0.6;
+            user-select: none;
+            flex: 0.65;
+            h1{
+                font-size: 100px;
+                text-align: center;
+                color: $bg-color;
             }
-            &.submit,&.joinRoomButton{
-                flex: 0.4;
-                color: $white-color;
-                background-color: $second-color;
-                margin: 0;
-                cursor: pointer;
-                &:active{
-                    background-color: $second-color-active;
+        }
+        form{
+            // border: solid 1px red;
+            background: linear-gradient(0deg,rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.92) 100%);
+            overflow: hidden;
+            // border: 1px solid yellow;
+            padding: 10px;
+            // position: absolute;
+            width: 100%;
+            flex: 0.35;
+            gap: 30px;
+            padding-top: 60px;
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            &.show {
+                display: flex;
+            }
+            input,button{
+                border-radius: 2px;
+                border: none;
+                width: 50%;
+                min-width: 300px;
+                height: 53px;
+                font-size: 15px;
+                &.prenom,&.room{
+                    padding-left: 5px;
+                    color:$bg-color;
+                    font-weight: 600;
+                    width: 51%;
+                    font-size: 17px;
+                    border: 3px $bg-color solid;
+                    border-radius: 2px;
+                    box-shadow: -8px 8px 0px $bg-color;
                 }
-            }
-            &#localButton,&.searchRoomButton{
-                flex:0.4;
-                cursor: pointer;
-                color: $white-color;
-                background-color: $blue-color;
-            }
-            &:focus{
-                outline: none;
+                &.submit,&.joinRoomButton,&#localButton,&.searchRoomButton{
+                    color: $white-color;
+                    font-family: 'GoodTiming';
+                    font-size: 30px;
+                    background-color: $bg-color;
+                    position: relative;
+                    margin: 0;
+                    user-select: none;
+                    cursor: pointer;
+                    &:active::after{
+                        content: '';
+                        box-shadow: -2px 2px 0px $bg-color;
+                    }
+                    &::after{
+                        content: '';
+                        position: absolute;
+                        top: -5px;
+                        left: -5px;
+                        right: -5px;
+                        bottom: -5px;
+                        border: 3px solid $bg-color; /* même couleur que le bouton */
+                        // z-index: -1;
+                        box-shadow: -8px 8px 0px $bg-color;
+                        border-radius: 3px; /* même rayon si nécessaire */
+                    }
+                }
+                &#localButton,&.searchRoomButton{
+                    cursor: pointer;
+                }
+                &:focus{
+                    outline: none;
+                }
             }
         }
     }

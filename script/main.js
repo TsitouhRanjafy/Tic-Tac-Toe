@@ -9,13 +9,14 @@ const iconReload = document.getElementById('icon-reload');
 const containerWinner = document.getElementById('container-winner');
 const playground = document.getElementById('main');
 const localButton = document.getElementById('localButton');
-const formData = document.getElementById('form');
+const formName = document.getElementById('form-name');
+const formMode = document.getElementById('form-mode');
+const formRoom = document.getElementById('form-room');
 const inputRoomName = document.getElementById('room');
 const searchRoomButton = document.getElementById('searchRoomButton'); // not implementhed
 const containerData = document.getElementById('container-data');
 const nameConainter = document.getElementById('userName');
 const roomContainer = document.getElementById('roomName');
-const formRoom = document.getElementById('form-room');
 const inputPrenom  = document.getElementById('prenom');
 const rondElement = `<div class="rond" ></div>`
 const croisElement = `<div class="crois">
@@ -105,15 +106,21 @@ iconReload.addEventListener('click',(e) => {
     location.reload();
 })
 
-formData.addEventListener('submit',(e) => {
+formName.addEventListener('submit',(e) => {
     e.preventDefault();
     if (inputPrenom.value) {
         playerName = inputPrenom.value.toLowerCase();
 
-        formData.classList.remove('show');
-        nameConainter.innerHTML = "Name: "+playerName;
-        formRoom.classList.add('show');
+        formName.classList.remove('show');
+        formMode.classList.add('show');
     }
+})
+
+
+formMode.addEventListener('submit', (e) => {
+    e.preventDefault();
+    formMode.classList.remove('show');
+    formRoom.classList.add('show');
 })
 
 formRoom.addEventListener('submit',(e) => {
@@ -121,9 +128,12 @@ formRoom.addEventListener('submit',(e) => {
     if (inputRoomName.value) {
         roomName = inputRoomName.value;
         playMultyOnline = true;
-
+        
         formRoom.classList.remove('show');
+        
+        nameConainter.innerHTML = "Name: "+playerName;
         roomContainer.innerHTML = "Room: "+ roomName;
+
         playground.classList.remove('disable');
         containerData.classList.add('show');
         main();
