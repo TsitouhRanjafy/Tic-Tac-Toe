@@ -2,8 +2,9 @@ import { checkWinner } from "./helper.js";
 import { myId, roomName, matchId } from "./main.js";
 
 export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
+    console.log(casesElement);
     for (let i=0;i <= casesElement.length - 1;i++){
-        casesElement[i].addEventListener(('click'),() => {
+        casesElement[i].addEventListener(('click'),(e) => {
             
             if (booleanCases[casesElement[i].classList.value[5]-1][casesElement[i].classList.value[7]-1]) {
                 console.table("déjà occupé");

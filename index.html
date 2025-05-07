@@ -12,62 +12,9 @@
     <script type="module" src="./script/main.js" defer></script>
 </head>
 <body>
-    
-    <!-- Fourth Display -->
-    <div class="container-winner" id="container-winner">
-        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-reload" id="icon-reload">
-            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
-        </svg>              
-    </div>
-    
-    <!-- Third Display -->
-    <div class="container-data" id="container-data">
-        <p id="userName">Name: </p>
-        <p id="roomName">Room: </p>
-    </div>
-    
-    <!-- Third Display -->
-    <main class="main disable" id="main">
-        <table>
-            <tr class="line line1">
-                <td class="case-1-1">
-                    <div class="rond test"></div> <!-- pour fixed le taille au initial -->
-                </td>
-                <td class="case-1-2">
-                    <div class="rond test"></div> 
-                </td>
-                <td class="case-1-3">
-                    <div class="rond test"></div> 
-                </td>
-            </tr>
-            <tr class="line line2">
-                <td class="case-2-1">
-                    <div class="rond test"></div>
-                </td>
-                <td class="case-2-2">
-                    <div class="rond test"></div>
-                </td>
-                <td class="case-2-3">
-                    <div class="rond test"></div>
-                </td>
-            </tr>
-            <tr class="line line3">
-                <td class="case-3-1">
-                    <div class="rond test"></div>
-                </td>
-                <td class="case-3-2">
-                    <div class="rond test"></div>
-                </td>
-                <td class="case-3-3">
-                    <div class="rond test"></div>
-                </td>
-            </tr>
-            
-        </table>
-    </main>
-
-    <div class="container-acceuil">
-        <div class="container-title">
+    <!-- Home -->
+    <div class="container-acceuil " id="container-acceuil">
+        <div class="container-title" id="container-title">
             <h1 class="title" >Tic <br/> Tac <br/> Toe </h1>
         </div>
         <!-- After all -->
@@ -89,5 +36,50 @@
             <button type="button" class="searchRoomButton" id="searchRoomButton">Search room</button>
         </form>
     </div>
+
+    <!-- Playground -->
+    <div class="container hidden" id="container">
+        <div class="container-option">
+            <div class="container-pause">
+                <hr><hr>
+            </div>
+            <div class="container-note">
+                
+            </div>
+        </div>
+        <div class="container-playground">
+            <div class="data">
+    
+            </div>
+            <div class="playground" id="playground">
+                <div class="line line1">
+                    <div class="case-1-1 case"></div>
+                    <div class="case-1-2 case"></div>
+                    <div class="case-1-3 case"></div>
+                </div>
+                <div class="line line2">
+                    <div class="case-2-1 case"></div>
+                    <div class="case-2-2 case"></div>
+                    <div class="case-2-3 case"></div>
+                </div>
+                <div class="line line3">
+                    <div class="case-3-1 case"></div>
+                    <div class="case-3-2 case"></div>
+                    <div class="case-3-3 case"></div>
+                </div>
+            </div>
+            <div class="turn-move">
+    
+            </div>
+        </div>
+    </div>
+
+    <!-- The Winner -->
+    <div class="container-winner" id="container-winner">
+        <svg fill="none" viewBox="0 0 24 24" stroke-width="1.5" stroke="currentColor" class="icon-reload" id="icon-reload">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M16.023 9.348h4.992v-.001M2.985 19.644v-4.992m0 0h4.992m-4.993 0 3.181 3.183a8.25 8.25 0 0 0 13.803-3.7M4.031 9.865a8.25 8.25 0 0 1 13.803-3.7l3.181 3.182m0-4.991v4.99" />
+        </svg>              
+    </div>
+
 </body>
 </html>

@@ -67,113 +67,121 @@ body{
             }
         }
     }
-    div.container-data{
-        position: absolute;
-        // border: solid 1px yellow;
-        top: 30px;
-        left: 30px;
-        width: 25%;
-        min-width: 160px;
-        display: none;
-        z-index: 90;
-        background-color: $white-color;
-        border-radius: 3px;
-        padding: 0 9px;
-        p{
-            color: black;
-            &#userName{
-                text-transform: capitalize;
-            }
-        }
-        &.show{
-            display: block;
-        }
-    }
-    main.main{
-        // border: solid 1px red;
-        width: 70vw;
-        height: 70vw;
-        max-width: 40vw;
-        max-height: 40vw;
-        &.disable{
-            visibility: none;
-            display: none;
-        }
-        
-        table{
-            // border: solid blue 1px;
-            width: 100%;
-            height: 100%;
-            border-collapse: collapse;
-            table-layout: fixed;
-            tr{
-                border-bottom:solid 3px $second-color;
-                &:last-child{
-                    border-bottom:solid 3px $bg-color;
-                }
-                &:first-child{
-                    border-top: solid 3px $bg-color;
-                }
-                td{
-                    border-right: solid 3px $second-color;
-                    &:last-child{
-                        border-right: solid 3px $bg-color;
-                    }
-                    &:first-child{
-                        border-left: solid 3px $bg-color;
-                    }
-                    .rond{
-                        border: solid 2px whitesmoke;
-                        width: 60%;
-                        height: 60%;
-                        border-radius: 100%;
-                        margin-left: 50%;
-                        transform: translate(-50%);
-                        &.test{
-                            border-color: $bg-color;
-                        }
-                    }
-                    .crois{
-                        min-width: 60%;
-                        min-height: 60%;
-                        max-width: 60%;
-                        max-height: 60%;
-                        margin-left: 50%;
-                        transform: translate(-50%);
-                        display: flex;
-                        flex-direction: column;
-                        justify-content: center;
-                        align-items: center;
-                        overflow: hidden;
-                        div{
-                            border: solid 1px white;
-                            width: 100px;
-
-                            &:nth-child(1){
-                                transform: rotate(-45deg);
-                            }
-                            &:nth-child(2){
-                                transform: rotate(45deg);
-                            }
-                        }
-                    }
-                   
-                    span{
-                        color: $bg-color;
-                        user-select: none;
-                    }
-                }
-            }
-        }
-    }
-    div.container-acceuil{
-        border: 2px solid red;
+    div.container{
+        /* border: 1px red solid; */
         width: 100%;
         height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
         flex-direction: column;
+        &.hidden{
+            display: none;
+        }
+        div.container-option{
+            background-color: rgb(255, 255, 255);
+            width: 100vw;
+            flex: 2;
+            display: flex;
+            justify-content: end;
+            // margin-bottom: 8px;
+            padding-bottom: 8px;
+            gap: 20px;
+            flex-direction: column;
+            div{
+                background-color: rgb(255, 255, 255);
+                margin-left: 20px;
+                width: 3vw;
+                border: 2px solid black;
+                height: 3vw;
+                min-width: 24px;
+                min-height: 24px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                gap: 6px;
+                box-shadow: -4px 4px 0px black;
+                hr{
+                    width: 10%;
+                    height: 50%;
+                    background-color: black;
+                    margin: 0;
+                    border-style: solid;
+                }
+            }
+        }
+        div.container-playground{
+            background-color: rgb(255, 255, 255);
+            width: 100%;
+            flex: 8;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            div.playground{
+                background-color: #ffffff;
+                border: 4px black solid;
+                min-width: 300px;
+                min-height: 300px;
+                width: 45vw;
+                height: 45vw;
+                display: flex;
+                flex-direction: column;
+                box-shadow: -8px 8px 0px black;
+                div.line{
+                    display: flex;
+                    flex-direction: row;
+                    width: max;
+                    flex: 1;
+                    border-bottom: 4px rgba(122, 122, 122, 0.425) solid;
+                    &:last-child{
+                        border-bottom: none;
+                    }
+                }
+                div.case{
+                    width: 100%;
+                    height: 100%;
+                    border-right: 4px rgba(122, 122, 122, 0.425) solid;
+                    display: flex;
+                    justify-content: center;
+                    align-items: center;
+                    position: relative;
+                    &:last-child{
+                        border-right: none;
+                    }
+                    div.rond{
+                        border: 3px red;
+                        border-style: ridge;
+                        width: 75%;
+                        height: 75%;
+                        border-radius: 100%;
+                    }
+                    hr{
+                        background-color: black;
+                        width: 80%;
+                        height: 1px;
+                        transform: rotate(45deg);
+                        &:nth-child(2){
+                            position: absolute;
+                            transform: rotate(-45deg);
+                        }
+                    }
+                }
+
+            }
+        }
+    }
+
+    div.container-acceuil{
+        // border: 2px solid red;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;
+        &.hidden{
+            display: none;
+        }
         div.container-title{
             background-color: rgba(255, 255, 255, 0.92);
             font-family: 'PressStart';
@@ -184,6 +192,9 @@ body{
                 font-size: 100px;
                 text-align: center;
                 color: $bg-color;
+            }
+            &.hidden{
+                display: none;
             }
         }
         form{

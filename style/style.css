@@ -59,107 +59,117 @@ body div.container-winner .icon-reload:hover {
 body div.container-winner .icon-reload:active {
   background-color: #003064;
 }
-body div.container-data {
-  position: absolute;
-  top: 30px;
-  left: 30px;
-  width: 25%;
-  min-width: 160px;
-  display: none;
-  z-index: 90;
-  background-color: #ebebeb;
-  border-radius: 3px;
-  padding: 0 9px;
-}
-body div.container-data p {
-  color: black;
-}
-body div.container-data p#userName {
-  text-transform: capitalize;
-}
-body div.container-data.show {
-  display: block;
-}
-body main.main {
-  width: 70vw;
-  height: 70vw;
-  max-width: 40vw;
-  max-height: 40vw;
-}
-body main.main.disable {
-  visibility: none;
-  display: none;
-}
-body main.main table {
+body div.container {
+  /* border: 1px red solid; */
   width: 100%;
   height: 100%;
-  border-collapse: collapse;
-  table-layout: fixed;
-}
-body main.main table tr {
-  border-bottom: solid 3px #c5aa21;
-}
-body main.main table tr:last-child {
-  border-bottom: solid 3px rgb(0, 0, 0);
-}
-body main.main table tr:first-child {
-  border-top: solid 3px rgb(0, 0, 0);
-}
-body main.main table tr td {
-  border-right: solid 3px #c5aa21;
-}
-body main.main table tr td:last-child {
-  border-right: solid 3px rgb(0, 0, 0);
-}
-body main.main table tr td:first-child {
-  border-left: solid 3px rgb(0, 0, 0);
-}
-body main.main table tr td .rond {
-  border: solid 2px whitesmoke;
-  width: 60%;
-  height: 60%;
-  border-radius: 100%;
-  margin-left: 50%;
-  transform: translate(-50%);
-}
-body main.main table tr td .rond.test {
-  border-color: rgb(0, 0, 0);
-}
-body main.main table tr td .crois {
-  min-width: 60%;
-  min-height: 60%;
-  max-width: 60%;
-  max-height: 60%;
-  margin-left: 50%;
-  transform: translate(-50%);
   display: flex;
-  flex-direction: column;
   justify-content: center;
   align-items: center;
-  overflow: hidden;
+  flex-direction: column;
 }
-body main.main table tr td .crois div {
-  border: solid 1px white;
-  width: 100px;
+body div.container.hidden {
+  display: none;
 }
-body main.main table tr td .crois div:nth-child(1) {
-  transform: rotate(-45deg);
+body div.container div.container-option {
+  background-color: rgb(255, 255, 255);
+  width: 100vw;
+  flex: 2;
+  display: flex;
+  justify-content: end;
+  padding-bottom: 8px;
+  gap: 20px;
+  flex-direction: column;
 }
-body main.main table tr td .crois div:nth-child(2) {
+body div.container div.container-option div {
+  background-color: rgb(255, 255, 255);
+  margin-left: 20px;
+  width: 3vw;
+  border: 2px solid black;
+  height: 3vw;
+  min-width: 24px;
+  min-height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 6px;
+  box-shadow: -4px 4px 0px black;
+}
+body div.container div.container-option div hr {
+  width: 10%;
+  height: 50%;
+  background-color: black;
+  margin: 0;
+  border-style: solid;
+}
+body div.container div.container-playground {
+  background-color: rgb(255, 255, 255);
+  width: 100%;
+  flex: 8;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+body div.container div.container-playground div.playground {
+  background-color: #ffffff;
+  border: 4px black solid;
+  min-width: 300px;
+  min-height: 300px;
+  width: 45vw;
+  height: 45vw;
+  display: flex;
+  flex-direction: column;
+  box-shadow: -8px 8px 0px black;
+}
+body div.container div.container-playground div.playground div.line {
+  display: flex;
+  flex-direction: row;
+  width: max;
+  flex: 1;
+  border-bottom: 4px rgba(122, 122, 122, 0.425) solid;
+}
+body div.container div.container-playground div.playground div.line:last-child {
+  border-bottom: none;
+}
+body div.container div.container-playground div.playground div.case {
+  width: 100%;
+  height: 100%;
+  border-right: 4px rgba(122, 122, 122, 0.425) solid;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+}
+body div.container div.container-playground div.playground div.case:last-child {
+  border-right: none;
+}
+body div.container div.container-playground div.playground div.case div.rond {
+  border: 3px red;
+  border-style: ridge;
+  width: 75%;
+  height: 75%;
+  border-radius: 100%;
+}
+body div.container div.container-playground div.playground div.case hr {
+  background-color: black;
+  width: 80%;
+  height: 1px;
   transform: rotate(45deg);
 }
-body main.main table tr td span {
-  color: rgb(0, 0, 0);
-  user-select: none;
+body div.container div.container-playground div.playground div.case hr:nth-child(2) {
+  position: absolute;
+  transform: rotate(-45deg);
 }
 body div.container-acceuil {
-  border: 2px solid red;
   width: 100%;
   height: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
   flex-direction: column;
+}
+body div.container-acceuil.hidden {
+  display: none;
 }
 body div.container-acceuil div.container-title {
   background-color: rgba(255, 255, 255, 0.92);
@@ -172,6 +182,9 @@ body div.container-acceuil div.container-title h1 {
   font-size: 100px;
   text-align: center;
   color: rgb(0, 0, 0);
+}
+body div.container-acceuil div.container-title.hidden {
+  display: none;
 }
 body div.container-acceuil form {
   background: linear-gradient(0deg, rgb(255, 255, 255) 80%, rgba(255, 255, 255, 0.92) 100%);

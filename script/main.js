@@ -4,25 +4,23 @@ console.log("init js");
 
 /* ------------------ Notre élément Html -------------------*/
 
-let casesElement = document.getElementsByTagName('td') // tout notre cases
+let casesElement = document.getElementsByClassName('case') // tout notre cases
 const iconReload = document.getElementById('icon-reload');
 const containerWinner = document.getElementById('container-winner');
-const playground = document.getElementById('main');
+const playground = document.getElementById('container');
 const localButton = document.getElementById('localButton');
 const formName = document.getElementById('form-name');
 const formMode = document.getElementById('form-mode');
 const formRoom = document.getElementById('form-room');
+const containerTitle = document.getElementById('container-title');
+const containerAcceuil = document.getElementById('container-acceuil');
 const inputRoomName = document.getElementById('room');
 const searchRoomButton = document.getElementById('searchRoomButton'); // not implementhed
-const containerData = document.getElementById('container-data');
 const nameConainter = document.getElementById('userName');
 const roomContainer = document.getElementById('roomName');
 const inputPrenom  = document.getElementById('prenom');
 const rondElement = `<div class="rond" ></div>`
-const croisElement = `<div class="crois">
-<div></div>
-<div></div>
-</div>`
+const croisElement = `<hr/><hr/>`
 
 
 /* ------------------ Notre variable -------------------*/
@@ -88,7 +86,7 @@ function main(){
                         console.log("room already used");
                         playground.classList.add('disable');
                         containerData.classList.remove('show');
-                        formData.classList.add('show');
+                        formMode.classList.add('show');
                     }
                 }
             })
@@ -130,19 +128,22 @@ formRoom.addEventListener('submit',(e) => {
         playMultyOnline = true;
         
         formRoom.classList.remove('show');
-        
-        nameConainter.innerHTML = "Name: "+playerName;
-        roomContainer.innerHTML = "Room: "+ roomName;
 
-        playground.classList.remove('disable');
-        containerData.classList.add('show');
-        main();
+
+        containerTitle.classList.add('hidden');
+        containerAcceuil.classList.add('hidden');
+        playground.classList.remove('hidden');
+
+        main(); // GO
     }
 })
 
 localButton.addEventListener('click',() => {
-    formData.classList.remove('show');
-    playground.classList.remove('disable');
+    formMode.classList.remove('show');
+    playground.classList.remove('hidden');
+    containerTitle.classList.add('hidden');
+    containerAcceuil.classList.add('hidden');
+
     main();
 })
 
