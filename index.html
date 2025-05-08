@@ -13,9 +13,9 @@
 </head>
 <body>
     <!-- Home -->
-    <div class="container-acceuil " id="container-acceuil">
+    <div class="container-acceuil" id="container-acceuil">
         <div class="container-title" id="container-title">
-            <h1 class="title" >Tic <br/> Tac <br/> Toe </h1>
+            <h1 class="title" >Tic</h1> <h1>Tac</h1> <h1>Toe </h1>
         </div>
         <!-- After all -->
         <form id="form-name" class="show">
@@ -48,8 +48,16 @@
             </div>
         </div>
         <div class="container-playground">
-            <div class="data">
-    
+            <div class="container-data">
+                <div class="your-data move-turn" id="your-data">
+                    <p class="coin-rond" style="color: red;">O</p>
+                    <p>Your name</p>
+                </div>
+                <p class="time" id="time">00:56</p>
+                <div class="freind-data" id="freind-data">
+                    <p style="color: #5f5f5f;">X</p>
+                    <p>Freind name</p>
+                </div>
             </div>
             <div class="playground" id="playground">
                 <div class="line line1">
@@ -67,9 +75,6 @@
                     <div class="case-3-2 case"></div>
                     <div class="case-3-3 case"></div>
                 </div>
-            </div>
-            <div class="turn-move">
-    
             </div>
         </div>
     </div>
