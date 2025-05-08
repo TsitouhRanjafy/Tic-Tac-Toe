@@ -72,10 +72,11 @@ body div.container.hidden {
   display: none;
 }
 body div.container div.container-option {
+  position: absolute;
   background-color: rgb(255, 255, 255);
   width: 100vw;
-  flex: 2;
   display: flex;
+  top: 6vh;
   justify-content: end;
   padding-bottom: 8px;
   gap: 20px;
@@ -83,7 +84,7 @@ body div.container div.container-option {
 }
 body div.container div.container-option div {
   background-color: rgb(255, 255, 255);
-  margin-left: 20px;
+  margin-left: 6vw;
   width: 3vw;
   border: 2px solid black;
   height: 3vw;
@@ -105,21 +106,25 @@ body div.container div.container-option div hr {
 body div.container div.container-playground {
   background-color: rgb(255, 255, 255);
   width: 100%;
+  height: 100%;
   display: flex;
-  flex: 10;
   justify-content: center;
   align-items: center;
   flex-direction: column;
   gap: 3vh;
 }
 body div.container div.container-playground div.container-data {
-  display: flex;
+  display: none;
   justify-content: space-between;
   align-items: center;
   flex-direction: row;
-  min-width: 200px;
+  min-width: 250px;
   width: 30%;
   height: 10vh;
+  position: relative;
+}
+body div.container div.container-playground div.container-data.show {
+  display: flex;
 }
 body div.container div.container-playground div.container-data div {
   display: flex;
@@ -127,7 +132,7 @@ body div.container div.container-playground div.container-data div {
   justify-content: center;
   align-items: center;
   width: 10vw;
-  min-width: 70px;
+  min-width: 80px;
   height: 100%;
 }
 body div.container div.container-playground div.container-data div.move-turn {
@@ -141,7 +146,7 @@ body div.container div.container-playground div.container-data div p {
   overflow: hidden;
   text-overflow: ellipsis;
   margin: 0;
-  font-family: "GoodTiming";
+  font-family: "Roboto";
   font-size: 14px;
 }
 body div.container div.container-playground div.container-data p.time {
@@ -298,6 +303,32 @@ body div.container-acceuil form input#localButton, body div.container-acceuil fo
 }
 body div.container-acceuil form input:focus, body div.container-acceuil form button:focus {
   outline: none;
+}
+body div.container-error {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: rgb(0, 0, 0);
+  color: white;
+  font-weight: 700;
+  font-family: "Roboto";
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  gap: 1vh;
+}
+body div.container-error.hidden {
+  display: none;
+}
+body div.container-error div.container-room-already-used {
+  display: none;
+}
+body div.container-error div.show {
+  display: contents;
+}
+body div.container-error button {
+  width: 10vw;
 }
 
 /*# sourceMappingURL=style.css.map */
