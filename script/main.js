@@ -16,6 +16,12 @@ const containerTitle = document.getElementById('container-title');
 const containerAcceuil = document.getElementById('container-acceuil');
 const inputRoomName = document.getElementById('room');
 const searchRoomButton = document.getElementById('searchRoomButton'); // not implementhed
+const containerData = document.getElementById('container-data');
+const containerError = document.getElementById('container-error');
+const containerRoomAlreadyUser = document.getElementById('container-room-already-used');
+const btnOkErrorRoom = document.getElementById('btn-room-ok');
+const myName = document.getElementById('my-name');
+const freindName = document.getElementById('friend-name');
 const nameConainter = document.getElementById('userName');
 const roomContainer = document.getElementById('roomName');
 const inputPrenom  = document.getElementById('prenom');
@@ -84,14 +90,19 @@ function main(){
                         console.log("✅ mutly online init, myId:",myId,"mtachId:",matchId," playerFirst:",init_value.playerFirst);
                     else {
                         console.log("room already used");
-                        playground.classList.add('disable');
+
                         containerData.classList.remove('show');
-                        formMode.classList.add('show');
+                        playground.classList.add('hidden');
+                        containerAcceuil.classList.remove('hidden');
+                        containerError.classList.remove('hidden');
+                        containerRoomAlreadyUser.classList.add('show');
+
                     }
                 }
             })
     
         } else {
+            containerData.classList.remove('show');
             multiplayerEvent(tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner);
             console.log("✅ multy offline init");
         }
@@ -133,6 +144,7 @@ formRoom.addEventListener('submit',(e) => {
         containerTitle.classList.add('hidden');
         containerAcceuil.classList.add('hidden');
         playground.classList.remove('hidden');
+        containerData.classList.add('show');
 
         main(); // GO
     }
@@ -143,8 +155,16 @@ localButton.addEventListener('click',() => {
     playground.classList.remove('hidden');
     containerTitle.classList.add('hidden');
     containerAcceuil.classList.add('hidden');
+    containerData.classList.remove('show');
 
     main();
+})
+
+btnOkErrorRoom.addEventListener('click', (e) => {
+    containerTitle.classList.remove('hidden');
+    formRoom.classList.add('show');
+    containerError.classList.add('hidden');
+    containerRoomAlreadyUser.classList.remove('show');
 })
 
 // Empêcher les rechargements non désirés
