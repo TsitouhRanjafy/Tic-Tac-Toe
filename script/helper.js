@@ -42,3 +42,47 @@ export const checkWinner = (tableCases) => {
     return '#'
 
 }
+
+export const showOrHidePlayground = (isShow,playground,containerData,isWithUserData = false) => {
+    const choice = Number(isShow) - (Number(isWithUserData) == 1 ? (Number(isWithUserData) + 1) : Number(isWithUserData));
+
+    switch (choice) {
+        case 1:
+            playground.classList.remove('hidden');
+            break;
+        case -1:
+            playground.classList.remove('hidden');
+            containerData.classList.add('show');
+            break;
+        case 0:
+            playground.classList.add('hidden');
+            containerData.classList.remove('show');
+            break;
+    }
+}
+
+export const showOrHideHome = (isShow,formMode,formRoom,formName,containerTitle,containerAcceuil,pageOneOrTwoOrFree = 0) => {
+    if (isShow){
+        switch (pageOneOrTwoOrFree) {
+            case 1:
+                formMode.classList.remove('show');
+                formRoom.classList.remove('show');
+                formName.classList.add('show');
+                break;
+            case 2:
+                formMode.classList.add('show');
+                formRoom.classList.remove('show');
+                formName.classList.remove('show');
+                break;
+            case 3: 
+                formMode.classList.remove('show');
+                formRoom.classList.add('show');
+                formName.classList.remove('show');
+                break;
+        }
+    } else {
+        formRoom.classList.remove('show');
+        containerTitle.classList.add('hidden');
+        containerAcceuil.classList.add('hidden');
+    }
+}

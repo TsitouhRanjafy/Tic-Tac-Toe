@@ -1,4 +1,5 @@
 import { multiplayerEvent,multiplayerEventOnline } from "./lib.js";
+import { showOrHidePlayground,showOrHideHome } from "./helper.js";
 
 console.log("init js");
 
@@ -20,10 +21,10 @@ const containerData = document.getElementById('container-data');
 const containerError = document.getElementById('container-error');
 const containerRoomAlreadyUser = document.getElementById('container-room-already-used');
 const btnOkErrorRoom = document.getElementById('btn-room-ok');
+const containerMyData = document.getElementById('your-data');
+const containerFreindData = document.getElementById('freind-data');
 const myName = document.getElementById('my-name');
-const freindName = document.getElementById('friend-name');
-const nameConainter = document.getElementById('userName');
-const roomContainer = document.getElementById('roomName');
+const freindName = document.getElementById('freind-name');
 const inputPrenom  = document.getElementById('prenom');
 const rondElement = `<div class="rond" ></div>`
 const croisElement = `<hr/><hr/>`
@@ -48,6 +49,7 @@ var booleanCases = [ // check if a case is occuped
 ]
 
 var togglePlayer = true; // true for ROND, false for CROIX
+
 
 /********************* Notre variable pour socket ***************/
 
@@ -86,18 +88,19 @@ function main(){
                 if (playerName == init_value.playerName) {
                     myId = init_value.playerId;
                     matchId = init_value.matchId;
-                    if (myId)
-                        console.log("✅ mutly online init, myId:",myId,"mtachId:",matchId," playerFirst:",init_value.playerFirst);
-                    else {
+                    if (myId) {
+                        console.log("✅ mutly online init, myId:",myId,"mtachId:",matchId," playerFirst:",init_value.playerFirst,"myName:",playerName);
+                        myName.innerHTML = playerName
+                    } else {
                         console.log("room already used");
-
-                        containerData.classList.remove('show');
-                        playground.classList.add('hidden');
+                        showOrHidePlayground(false,playground,containerData);
                         containerAcceuil.classList.remove('hidden');
                         containerError.classList.remove('hidden');
                         containerRoomAlreadyUser.classList.add('show');
 
                     }
+                } else {
+                    freindName.innerHTML = init_value.playerName;
                 }
             })
     
@@ -111,7 +114,7 @@ function main(){
 /********************** Fonction pour DOM ******************************/
 
 iconReload.addEventListener('click',(e) => {
-    alert("zevhbze")
+    alert("click sur annuler")
     location.reload();
 })
 
@@ -119,17 +122,13 @@ formName.addEventListener('submit',(e) => {
     e.preventDefault();
     if (inputPrenom.value) {
         playerName = inputPrenom.value.toLowerCase();
-
-        formName.classList.remove('show');
-        formMode.classList.add('show');
+        showOrHideHome(true,formMode,formRoom,formName,containerTitle,containerAcceuil,2);
     }
 })
 
-
 formMode.addEventListener('submit', (e) => {
     e.preventDefault();
-    formMode.classList.remove('show');
-    formRoom.classList.add('show');
+    showOrHideHome(true,formMode,formRoom,formName,containerTitle,containerAcceuil,3);
 })
 
 formRoom.addEventListener('submit',(e) => {
@@ -138,25 +137,15 @@ formRoom.addEventListener('submit',(e) => {
         roomName = inputRoomName.value;
         playMultyOnline = true;
         
-        formRoom.classList.remove('show');
-
-
-        containerTitle.classList.add('hidden');
-        containerAcceuil.classList.add('hidden');
-        playground.classList.remove('hidden');
-        containerData.classList.add('show');
-
+        showOrHideHome(false,formMode,formRoom,formName,containerTitle,containerAcceuil);
+        showOrHidePlayground(true,playground,containerData,true);
         main(); // GO
     }
 })
 
 localButton.addEventListener('click',() => {
-    formMode.classList.remove('show');
-    playground.classList.remove('hidden');
-    containerTitle.classList.add('hidden');
-    containerAcceuil.classList.add('hidden');
-    containerData.classList.remove('show');
-
+    showOrHideHome(false,formMode,formRoom,formName,containerTitle,containerAcceuil);
+    showOrHidePlayground(true,playground,containerData,false);
     main();
 })
 
@@ -166,6 +155,11 @@ btnOkErrorRoom.addEventListener('click', (e) => {
     containerError.classList.add('hidden');
     containerRoomAlreadyUser.classList.remove('show');
 })
+
+export const toggleCurrentTurn = (playerId) => {
+    console.log(playerId);
+}
+
 
 // Empêcher les rechargements non désirés
 window.addEventListener('beforeunload', (event) => {

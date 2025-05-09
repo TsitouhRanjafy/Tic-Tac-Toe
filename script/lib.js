@@ -1,13 +1,11 @@
 import { checkWinner } from "./helper.js";
-import { myId, roomName, matchId } from "./main.js";
+import { myId, roomName, matchId,toggleCurrentTurn } from "./main.js";
 
 export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesElement,croisElement,rondElement,winner,containerWinner) => {
-    console.log(casesElement);
     for (let i=0;i <= casesElement.length - 1;i++){
         casesElement[i].addEventListener(('click'),(e) => {
             
             if (booleanCases[casesElement[i].classList.value[5]-1][casesElement[i].classList.value[7]-1]) {
-                console.table("déjà occupé");
                 return; // case déjà remplie
             }
     
@@ -21,7 +19,6 @@ export const multiplayerEvent = (tableCases,booleanCases,togglePlayer,casesEleme
             booleanCases[casesElement[i].classList.value[5]-1][casesElement[i].classList.value[7]-1] = true
             togglePlayer = togglePlayer? false:true // toggle joueur
     
-            console.table(tableCases);
             winner = checkWinner(tableCases)
             if (winner != '#'){
                 casesElement = null
@@ -67,9 +64,12 @@ export const multiplayerEventOnline = (serverSocket,tableCases,booleanCases,togg
             containerWinner.classList.add('show');
             // serverSocket.emit('winner_event',{ winner: winner });
         }
+        toggleCurrentTurn(event.playerId);
     })
     // serverSocket.on('winner_event',(event) => {
     // })
 }
+
+
 
 
